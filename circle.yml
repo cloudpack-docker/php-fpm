@@ -1,0 +1,9 @@
+machine:
+    services:
+        - docker
+dependencies:
+    override:
+        - docker build -t cloudpack/php-fpm .
+test:
+    override:
+        - docker run -d cloudpack/nginx
