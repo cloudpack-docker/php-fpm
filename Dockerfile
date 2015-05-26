@@ -1,7 +1,11 @@
-FROM centos:centos7
+FROM cloudpack/centos
 
 RUN yum -y update
 RUN yum -y install php-fpm
 RUN yum -y clean all
 
-CMD ["/usr/sbin/php-fpm", "--nodaemonize" ]
+RUN sed -ri 's/listen = 127.0.0.1:9000/listen = \/var\/run\/php-fpm\/php-fpm.sock/g' /etc/php-fpm.d/www.conf
+
+VOLUME /var/run/php-fpm
+
+CMD /usr/sbin/php-fpm --nodaemonize
