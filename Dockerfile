@@ -10,6 +10,9 @@ RUN sed -ri 's/listen = 127.0.0.1:9000/listen = \/var\/run\/php-fpm\/php-fpm.soc
 RUN cp -rfp /etc/php-fpm.d /etc/php-fpm.d-org
 RUN cp -rfp /etc/php.d /etc/php.d-org
 
+RUN mkdir /var/lib/php/session
+RUN chown apache:apache /var/lib/php/session
+
 CMD test -z "$(ls -A /etc/php-fpm.d)" && cp -rfp /etc/php-fpm.d-org/* /etc/php-fpm.d ;\
     test -z "$(ls -A /etc/php.d)" && cp -rfp /etc/php.d-org/* /etc/php.d ;\
     /usr/sbin/php-fpm --nodaemonize
