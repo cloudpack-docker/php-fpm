@@ -1,7 +1,8 @@
 FROM cloudpack/centos
 
 RUN yum -y update
-RUN yum -y install php-fpm
+RUN yum -y install php-fpm php-mbstring php-mysql php-pecl-memcache epel-release
+RUN yum -y install php-pecl-imagick
 RUN yum -y clean all
 
 RUN sed -ri 's/listen = 127.0.0.1:9000/listen = \/var\/run\/php-fpm\/php-fpm.sock/g' /etc/php-fpm.d/www.conf
