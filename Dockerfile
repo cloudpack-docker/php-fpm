@@ -1,7 +1,7 @@
 FROM cloudpack/centos
 
 RUN yum -y update
-RUN yum -y install php-fpm php-mbstring php-mysql php-pecl-memcache epel-release
+RUN yum -y install php-fpm php-mbstring php-mysql php-pecl-memcache postfix epel-release
 RUN yum -y install php-pecl-imagick
 RUN yum -y clean all
 
@@ -15,6 +15,7 @@ RUN chown apache:apache /var/lib/php/session
 
 CMD test -z "$(ls -A /etc/php-fpm.d)" && cp -rfp /etc/php-fpm.d-org/* /etc/php-fpm.d ;\
     test -z "$(ls -A /etc/php.d)" && cp -rfp /etc/php.d-org/* /etc/php.d ;\
+    /usr/sbin/postfix start &&\
     /usr/sbin/php-fpm --nodaemonize
 
 VOLUME /var/run/php-fpm
