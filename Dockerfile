@@ -1,7 +1,7 @@
 FROM cloudpack/centos
 
 RUN yum -y update
-RUN yum -y install php-fpm php-mbstring php-mysql php-pecl-memcache postfix epel-release
+RUN yum -y install php-fpm php-mbstring php-mysql php-mcrypt php-pecl-memcache postfix epel-release
 RUN yum -y install php-pecl-imagick
 RUN yum -y clean all
 
