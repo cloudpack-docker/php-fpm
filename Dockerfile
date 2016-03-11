@@ -1,4 +1,4 @@
-FROM cloudpack/centos:latest
+FROM cloudpack/centos:0.0.0
 
 RUN yum -y update
 RUN yum -y install php-fpm php-mbstring php-mysql php-pecl-memcache postfix epel-release
